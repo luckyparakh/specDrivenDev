@@ -1,0 +1,20 @@
+root = "."
+tmp_dir = "tmp"
+
+[build]
+  bin = "./tmp/agentclinic"
+  cmd = "go build -o ./tmp/agentclinic ."
+  include_ext = ["go"]
+  exclude_dir = ["tmp", "bin", "static", "vendor", "node_modules", "specs"]
+
+[log]
+  time = false
+
+[color]
+  main = "yellow"
+  watcher = "cyan"
+  build = "green"
+  runner = "blue"
+
+[misc]
+  clean_on_exit = true

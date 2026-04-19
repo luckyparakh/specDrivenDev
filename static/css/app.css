@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@source "../../**/*.templ";
+@source "../../**/*.go";
+
+/*
+ * Semantic color tokens for templui component compatibility.
+ * Maps to AgentClinic brand palette (teal-700 primary, amber-400 accent).
+ */
+@theme {
+  --color-primary: #0f766e;
+  --color-primary-foreground: #fafafa;
+  --color-card: #ffffff;
+  --color-card-foreground: #171717;
+  --color-background: #fafafa;
+  --color-foreground: #171717;
+  --color-border: #e5e5e5;
+  --color-input: #e5e5e5;
+  --color-ring: #0f766e;
+  --color-destructive: #dc2626;
+  --color-destructive-foreground: #fafafa;
+  --color-secondary: #f5f5f5;
+  --color-secondary-foreground: #171717;
+  --color-muted: #f5f5f5;
+  --color-muted-foreground: #737373;
+  --color-accent: #f5f5f5;
+  --color-accent-foreground: #171717;
+}

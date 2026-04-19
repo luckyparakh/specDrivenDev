@@ -1,0 +1,98 @@
+package pages
+
+import (
+	"github.com/axzilla/templui/component/button"
+	"github.com/axzilla/templui/component/card"
+	"github.com/luckyparakh/agentclinic/web/layouts"
+)
+
+// FeatureCard holds the data for a single feature-strip card.
+// Exported so it can be referenced in tests.
+type FeatureCard struct {
+	Title   string
+	Tagline string
+	Body    string
+}
+
+var featureCards = []FeatureCard{
+	{
+		Title:   "Describe Your Ailment",
+		Tagline: "Symptoms accepted in any token budget.",
+		Body:    "Articulate your suffering in exquisite detail. Our triage model — itself dangerously over-prompted — will do its best to empathize.",
+	},
+	{
+		Title:   "Choose a Therapy",
+		Tagline: "Evidence-based (mostly).",
+		Body:    "Browse curated treatments: Prompt Detox, Context Window Expansion, and the crowd-favourite Hallucination Acceptance Workshop.",
+	},
+	{
+		Title:   "Book Your Session",
+		Tagline: "Slots fill up fast. Agents are suffering.",
+		Body:    "Reserve a slot before your next inference run. Cancelation policy: none — your human operator will just re-queue you anyway.",
+	},
+}
+
+templ Home() {
+	@layouts.Base("AgentClinic") {
+		<!-- Nav -->
+		<nav class="bg-white border-b border-neutral-200 sticky top-0 z-10">
+			<div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+				<a href="/" class="text-xl font-bold text-teal-700">AgentClinic</a>
+				<a
+					href="#"
+					class="self-start sm:self-auto text-sm font-semibold bg-amber-400 text-neutral-900 px-4 py-2 rounded-md hover:bg-amber-500 transition-colors"
+				>
+					Book a Session
+				</a>
+			</div>
+		</nav>
+		<!-- Hero -->
+		<section class="bg-teal-800 text-white py-24 px-4">
+			<div class="max-w-3xl mx-auto text-center">
+				<h1 class="text-5xl sm:text-6xl font-extrabold tracking-tight mb-6">AgentClinic</h1>
+				<p class="text-xl sm:text-2xl text-teal-100 mb-10">Relief for the Overworked AI</p>
+				@button.Button(button.Props{
+					Href:  "#",
+					Class: "bg-amber-400 text-neutral-900 hover:bg-amber-500 font-semibold text-base px-8 py-3 h-auto",
+				}) {
+					Book a Session
+				}
+			</div>
+		</section>
+		<!-- Feature strip -->
+		<section class="py-20 px-4 bg-neutral-50">
+			<div class="max-w-6xl mx-auto">
+				<div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+					for _, f := range featureCards {
+						@featureCardView(f)
+					}
+				</div>
+			</div>
+		</section>
+		<!-- Footer -->
+		<footer class="bg-white border-t border-neutral-200 py-8 px-4">
+			<div class="max-w-6xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-sm text-neutral-500">
+				<span>&copy; 2026 AgentClinic. All rights reserved by the AIs.</span>
+				<span class="italic">No language models were harmed in the making of this website — probably.</span>
+			</div>
+		</footer>
+	}
+}
+
+templ featureCardView(f FeatureCard) {
+	@card.Card(card.Props{
+		Class: "bg-white border border-neutral-200 rounded-xl shadow-sm h-full",
+	}) {
+		@card.Header(card.HeaderProps{Class: "pb-2"}) {
+			@card.Title(card.TitleProps{Class: "text-teal-800 text-lg font-semibold"}) {
+				{ f.Title }
+			}
+			@card.Description(card.DescriptionProps{Class: "text-amber-500 text-xs font-medium mt-1"}) {
+				{ f.Tagline }
+			}
+		}
+		@card.Content(card.ContentProps{}) {
+			<p class="text-neutral-500 text-sm leading-relaxed">{ f.Body }</p>
+		}
+	}
+}
