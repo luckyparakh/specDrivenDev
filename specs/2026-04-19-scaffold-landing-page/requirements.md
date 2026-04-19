@@ -4,6 +4,8 @@
 
 This phase delivers a working local server that renders a branded, mobile-responsive landing page. No database, no auth, no dynamic data. Everything is static HTML produced by Templ templates styled with Tailwind CSS and templui components.
 
+Delivery is in two steps: a **minimal home page** (Group 4) that proves the full pipeline end-to-end, followed by the **full landing page** (Group 5) that adds all required sections.
+
 ---
 
 ## Decisions
@@ -34,7 +36,14 @@ This phase delivers a working local server that renders a branded, mobile-respon
 | Accent / CTA | Warning amber (`amber-400` / `amber-500`) |
 | Body font | System font stack (no custom font loading in Phase 1) |
 
-### Landing Page Sections (required)
+### Minimal Home Page (required — Group 4)
+
+The `GET /` route must render a styled Templ page containing:
+- Site name ("AgentClinic") as a teal-colored heading
+- Tagline (*"Relief for the Overworked AI"*) as a subtitle
+- No nav, no cards, no footer — only enough to prove Go → Gin → Templ → Tailwind → browser works end-to-end
+
+### Full Landing Page Sections (required — Group 5)
 1. **Nav** — site name left-aligned; "Book a Session" CTA right-aligned (links to `#` for now)
 2. **Hero** — full-width section, large h1 with site name, tagline as subtitle, one amber CTA button
 3. **Feature strip** — 3 equal cards: "Describe Your Ailment", "Choose a Therapy", "Book Your Session"; each with a short satirical one-liner

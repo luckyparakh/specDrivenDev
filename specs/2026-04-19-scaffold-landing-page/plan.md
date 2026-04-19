@@ -36,20 +36,29 @@ Each task group is independently completable and results in a passing `go build`
 
 ---
 
-## Group 4 — Landing Page
+## Group 4 — Minimal Home Page
 
-1. Create `web/pages/landing.templ` — extends `base.templ`, contains:
+1. Create `web/pages/home.templ` — extends `base.templ`; renders only:
+   - Site name heading ("AgentClinic") using a teal text class
+   - Tagline (*"Relief for the Overworked AI"*) as a subtitle paragraph
+2. Wire `GET /` Gin route to render `home.templ`
+3. Serve `static/` directory via Gin's `Static` middleware
+4. Confirm `http://localhost:8080` returns a styled page with the site name and tagline — nothing else required at this step
+
+---
+
+## Group 5 — Full Landing Page
+
+1. Expand `web/pages/home.templ` (already wired from Group 4) — add all required sections:
    - **Nav**: site name "AgentClinic" (left), placeholder "Book a Session" CTA link (right)
    - **Hero**: large heading, tagline (*"Relief for the Overworked AI"*), primary CTA button
    - **Features strip**: 3 cards — "Describe Your Ailment", "Choose a Therapy", "Book Your Session"
    - **Footer**: copyright line with a satirical note
-2. Wire `GET /` Gin route to render `landing.templ`
-3. Serve `static/` directory via Gin's `Static` middleware
-4. Apply templui component variants for button and card where available
+2. Apply templui component variants for button and card where available
 
 ---
 
-## Group 5 — Mobile Responsiveness
+## Group 6 — Mobile Responsiveness
 
 1. Audit all layout containers: ensure `max-w-*`, `px-4`, responsive grid classes (`sm:`, `md:`) are in place
 2. Verify nav collapses cleanly at < 640 px (hamburger or stacked layout)

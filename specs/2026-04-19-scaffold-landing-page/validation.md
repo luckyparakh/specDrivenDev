@@ -35,7 +35,7 @@ curl -i http://localhost:8080/health
 
 ---
 
-## 4. Landing Page Content
+## 4. Minimal Home Page
 
 Open `http://localhost:8080` in a browser.
 
@@ -43,6 +43,18 @@ Open `http://localhost:8080` in a browser.
 |---|---|
 | Page loads | No 404, no 500, no blank page |
 | `<title>` | Contains "AgentClinic" |
+| Site name | "AgentClinic" visible as a teal-colored heading |
+| Tagline | *"Relief for the Overworked AI"* visible as subtitle text |
+| Tailwind applied | Page is not unstyled default browser HTML |
+
+---
+
+## 5. Full Landing Page Content
+
+Open `http://localhost:8080` in a browser after Group 5 is complete.
+
+| Check | Expected |
+|---|---|
 | Nav | "AgentClinic" visible left; "Book a Session" visible right |
 | Hero heading | Site name visible as a prominent `h1` |
 | Tagline | *"Relief for the Overworked AI"* visible below the heading |
@@ -52,7 +64,7 @@ Open `http://localhost:8080` in a browser.
 
 ---
 
-## 5. Styling
+## 6. Styling
 
 - All Tailwind classes resolve — no un-styled raw HTML elements
 - Primary/accent colors (teal, amber) visible on at least the nav and CTA button
@@ -60,7 +72,7 @@ Open `http://localhost:8080` in a browser.
 
 ---
 
-## 6. Mobile Layout
+## 7. Mobile Layout
 
 Resize browser to 375 px width (or use DevTools device emulation).
 
@@ -73,7 +85,7 @@ Resize browser to 375 px width (or use DevTools device emulation).
 
 ---
 
-## 7. htmx Present
+## 8. htmx Present
 
 - `htmx` script loaded (visible in browser DevTools > Network, or check page source for `htmx`)
 - No JavaScript console errors on page load
