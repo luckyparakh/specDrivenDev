@@ -41,6 +41,111 @@ Prefer boring, proven technology. The stack should be deployable as a **single b
 
 > No OAuth or third-party SSO in the initial phases. Agents register with a made-up email and a password they immediately forget.
 
+## Testing
+
+### Philosophy
+
+All tests are written in Go using the standard `testing` package. Tests live **alongside source files** (`_test.go` next to each package). No external test runner.
+
+### Strategy: Table-Driven Tests
+
+Use Go table-driven tests (`[]struct{ name, ... }` + `t.Run`) for every layer:
+
+| Layer | What to test | Tool |
+|---|---|---|
+| **Business logic** | Pure functions, data transforms | `testing` |
+| **HTTP handlers** | Status codes, headers, redirects | `net/http/httptest` + `httptest.NewRecorder` |
+| **HTML output** | Rendered Templ components — presence of text, element structure | `net/http/httptest` + stdlib `strings`/`bytes` |
+| **Route integration** | Full request → Gin router → rendered HTML | `httptest.NewServer` or `httptest.NewRecorder` with a wired `*gin.Engine` |
+
+### Frontend Testing (Go-only, no browser tooling)
+
+Render Templ components or fire HTTP requests against a test Gin engine, then assert on the HTML string output. No Playwright, no Cypress — the stdlib is sufficient for Phase 1–3.
+
+**Pattern for handler + HTML assertions:**
+
+```go
+// Example: table-driven test for GET /
+func TestHomeRoute(t *testing.T) {
+    router := setupRouter() // returns a configured *gin.Engine
+
+    tests := []struct {
+        name         string
+        wantStatus   int
+        wantContains []string
+    }{
+        {
+            name:       "home page renders landing content",
+            wantStatus: http.StatusOK,
+            wantContains: []string{
+                "AgentClinic",
+                "Relief for the Overworked AI",
+                "Book a Session",
+                "Describe Your Ailment",
+            },
+        },
+    }
+
+    for _, tc := range tests {
+        t.Run(tc.name, func(t *testing.T) {
+            w := httptest.NewRecorder()
+            req := httptest.NewRequest(http.MethodGet, "/", nil)
+            router.ServeHTTP(w, req)
+
+            if w.Code != tc.wantStatus {
+                t.Errorf("status: got %d, want %d", w.Code, tc.wantStatus)
+            }
+            body := w.Body.String()
+            for _, s := range tc.wantContains {
+                if !strings.Contains(body, s) {
+                    t.Errorf("body missing %q", s)
+                }
+            }
+        })
+    }
+}
+```
+
+**Pattern for Templ component unit tests:**
+
+```go
+// Example: assert a component renders expected markup
+func TestFeatureCardView(t *testing.T) {
+    tests := []struct {
+        name         string
+        card         featureCard
+        wantContains []string
+    }{
+        {
+            name: "renders title and body",
+            card: featureCard{
+                title: "Describe Your Ailment",
+                body:  "some body text",
+            },
+            wantContains: []string{"Describe Your Ailment", "some body text"},
+        },
+    }
+
+    for _, tc := range tests {
+        t.Run(tc.name, func(t *testing.T) {
+            var buf bytes.Buffer
+            err := featureCardView(tc.card).Render(context.Background(), &buf)
+            if err != nil {
+                t.Fatalf("render error: %v", err)
+            }
+            html := buf.String()
+            for _, s := range tc.wantContains {
+                if !strings.Contains(html, s) {
+                    t.Errorf("rendered HTML missing %q", s)
+                }
+            }
+        })
+    }
+}
+```
+
+> **Rule of thumb:** test behaviour, not markup. Assert on meaningful text content and HTTP semantics — not on specific HTML tag nesting.
+
 ## Build & Tooling
 
 | Tool | Purpose |
@@ -49,6 +154,7 @@ Prefer boring, proven technology. The stack should be deployable as a **single b
 | `tailwindcss` CLI | Builds and purges CSS |
 | `air` | Live-reload during development |
 | `make` | Single `Makefile` with `dev`, `build`, `migrate` targets |
+| `go test ./...` | Runs all table-driven tests |
 
 ## Deployment
 

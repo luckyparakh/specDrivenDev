@@ -63,3 +63,19 @@ Each task group is independently completable and results in a passing `go build`
 1. Audit all layout containers: ensure `max-w-*`, `px-4`, responsive grid classes (`sm:`, `md:`) are in place
 2. Verify nav collapses cleanly at < 640 px (hamburger or stacked layout)
 3. Verify feature cards stack to single column on mobile
+
+---
+
+## Group 7 — Test Suite
+
+1. Refactor `main.go`: extract `setupRouter() *gin.Engine` so tests can wire the router without starting a real server
+2. Write `main_test.go` (package `main`) — table-driven integration tests:
+   - `GET /health` → `200 OK`
+   - `GET /` → `200 OK` + all required text present in the HTML body
+   - Unknown routes → `404`
+3. Export `FeatureCard` struct and `featureCards` slice from `web/pages/home.templ` (capitalise field names)
+4. Write `web/pages/home_test.go` (package `pages`) — table-driven component unit tests:
+   - `TestFeatureCardsData` — asserts count, titles, and taglines of the static card data
+   - `TestFeatureCardView` — renders each card variant and asserts content in the HTML buffer
+   - `TestHomeComponent` — renders the full `Home()` component and asserts all sections are present
+5. Confirm `go test ./...` exits `0` with no failures

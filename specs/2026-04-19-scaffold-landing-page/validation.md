@@ -101,6 +101,25 @@ make lint
 
 ---
 
+## 9. Test Suite
+
+```
+go test ./...
+```
+- Must exit `0` with no failures
+- The following test functions must pass:
+
+| Package | Test | What it covers |
+|---|---|---|
+| `main` | `TestHealthRoute` | `GET /health` → 200 |
+| `main` | `TestHomeRoute` | `GET /` → 200 + all landing page text in body |
+| `main` | `TestUnknownRouteReturns404` | undefined routes → 404 |
+| `pages` | `TestFeatureCardsData` | static card slice has 3 entries with correct titles and taglines |
+| `pages` | `TestFeatureCardView` | each card renders its title, tagline, and body |
+| `pages` | `TestHomeComponent` | full `Home()` component renders nav, hero, all 3 cards, footer, htmx script |
+
+---
+
 ## Definition of Done
 
 All 8 checks above pass on a clean `git clone` + `make dev` on a machine with Go 1.24.10 and Node.js installed. No manual steps beyond those two commands should be required.

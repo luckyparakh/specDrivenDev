@@ -54,6 +54,14 @@ The `GET /` route must render a styled Templ page containing:
 - `.air.toml` watches `.go` and `.templ` output files; excludes `tmp/`, `bin/`, `static/`
 - `npm run css` drives Tailwind; managed via a minimal `package.json` (no framework, no bundler)
 
+### Testing
+- Test framework: Go stdlib `testing` + `net/http/httptest` — no external test libraries
+- Pattern: **table-driven tests** (`[]struct{ name, ... }` + `t.Run`) for every layer
+- Test files live **alongside source** (`_test.go` next to each package)
+- Router is testable via `setupRouter() *gin.Engine` — no real server needed
+- Templ component tests render directly to a `bytes.Buffer` via `.Render(context.Background(), &buf)`
+- Run all tests with `go test ./...`; must pass before merge
+
 ---
 
 ## Out of Scope for This Phase
