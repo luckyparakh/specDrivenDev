@@ -1,4 +1,4 @@
-.PHONY: build dev lint dev-air dev-templ dev-css
+.PHONY: build dev lint dev-air dev-templ dev-css migrate sqlc
 
 build:
 	templ generate
@@ -18,3 +18,9 @@ dev-css:
 
 lint:
 	go vet ./...
+
+migrate:
+	go run ./cmd/migrate up
+
+sqlc:
+	sqlc generate

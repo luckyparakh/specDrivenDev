@@ -103,3 +103,12 @@ Commit this, switch to main, and merge this branch, then delete it.
 ## Prompt 8
 
 Go to the roadmap.md and combine phases 2-3-4-5 into a new phase 2.
+
+# Lesson 09 — Review
+## Prompt 1
+
+Do a deep review: Spawn multiple subagents to go through all the changes on this branch from three different perspectives and see if anything doesn't make sense, could be better, etc.
+
+## Prompt 2
+
+Use your changelog skill to update the changelog with work done on this branch.

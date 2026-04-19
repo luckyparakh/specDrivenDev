@@ -3,3 +3,4 @@ bin/
 static/css/dist.css
 node_modules/
 vendor/
+db.sqlite
