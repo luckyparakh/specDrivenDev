@@ -70,7 +70,7 @@ Update the spec to capture that the header, footer, and main components should b
 
 Mark this specs/roadmap.md phase as complete, commit this work, switch to main, and merge this branch, then delete it.
 
-# Lesson 08 — Changes
+# Lesson 08 — Changes (Re_planning and Skills)
 
 ## Prompt 1
 
