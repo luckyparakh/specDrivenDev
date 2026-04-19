@@ -23,6 +23,21 @@ Prefer boring, proven technology. The stack should be deployable as a **single b
 | CSS utility framework | **Tailwind CSS v4** | Co-located styles, tree-shaken output, mobile-first |
 | Component source | **templui** | Ships Tailwind-compatible components, no custom CSS required for basics |
 
+### Responsive Design Standard
+
+Every page in the product UI **must be usable at three viewport widths**: 375 px (mobile), 768 px (tablet), 1280 px (desktop). This is a hard requirement across all phases, not a polish step.
+
+| Rule | Detail |
+|---|---|
+| Approach | Mobile-first — default styles target small screens; larger screens override with breakpoint prefixes |
+| Primary breakpoint | `sm:` (≥ 640 px) — covers the mobile → tablet/desktop transition for most layouts |
+| Secondary breakpoints | `md:` (≥ 768 px) and `lg:` (≥ 1024 px) — use as needed for complex layouts |
+| Viewport meta | Every page shell must include `<meta name="viewport" content="width=device-width, initial-scale=1.0">` |
+| Containers | All content containers must use `max-w-*` + `px-4` (or `px-6`) to prevent overflow on small screens |
+| Grids | Multi-column grids must start at `grid-cols-1` and step up with breakpoints (e.g. `sm:grid-cols-2 lg:grid-cols-3`) |
+| No fixed widths | Do not use hard-coded pixel widths on layout elements; use Tailwind's responsive width utilities only |
+| Typography | Headings should use a responsive scale (e.g. `text-3xl sm:text-5xl`) so they don't overflow on small screens |
+
 ## Data
 
 | Concern | Choice | Rationale |

@@ -92,7 +92,7 @@ Resize browser to 375 px width (or use DevTools device emulation).
 
 ---
 
-## 8. `go vet`
+## 9. `go vet`
 
 ```
 make lint
@@ -101,7 +101,7 @@ make lint
 
 ---
 
-## 9. Test Suite
+## 10. Test Suite
 
 ```
 go test ./...
@@ -116,7 +116,7 @@ go test ./...
 | `main` | `TestUnknownRouteReturns404` | undefined routes → 404 |
 | `pages` | `TestFeatureCardsData` | static card slice has 3 entries with correct titles and taglines |
 | `pages` | `TestFeatureCardView` | each card renders its title, tagline, and body |
-| `pages` | `TestHomeComponent` | full `Home()` component renders nav, hero, all 3 cards, footer, htmx script |
+| `pages` | `TestHomeComponent` | full `Home()` renders nav, hero, all 3 cards, footer, htmx script, viewport meta |
 
 ---
 

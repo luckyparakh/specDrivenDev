@@ -151,6 +151,13 @@ func TestHomeComponent(t *testing.T) {
 				"<title>AgentClinic</title>",
 			},
 		},
+		{
+			name: "viewport meta tag present for responsive design",
+			wantContains: []string{
+				`name="viewport"`,
+				`width=device-width`,
+			},
+		},
 	}
 
 	for _, tc := range tests {

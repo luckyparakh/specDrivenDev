@@ -26,6 +26,14 @@ Delivery is in two steps: a **minimal home page** (Group 4) that proves the full
 - CSS: **Tailwind CSS v4** — compiled to `static/css/app.css`; no inline styles, no `<style>` blocks
 - JS: **htmx** loaded from CDN in `base.templ`; no other JavaScript
 
+### Responsive Design
+- All pages must be usable at **375 px** (mobile), **768 px** (tablet), and **1280 px** (desktop)
+- Mobile-first: default styles target small screens; larger screens override with `sm:` / `md:` / `lg:` Tailwind breakpoint prefixes
+- Every page shell must include `<meta name="viewport" content="width=device-width, initial-scale=1.0">`
+- Content containers use `max-w-*` + `px-4` to prevent overflow
+- Multi-column grids start at `grid-cols-1` and step up (e.g. `sm:grid-cols-3`)
+- No hard-coded pixel widths on layout elements
+
 ### Branding (locked)
 | Element | Value |
 |---|---|

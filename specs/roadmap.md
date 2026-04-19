@@ -2,6 +2,8 @@
 
 Each phase is intentionally tiny: one or two shippable things. A phase is done when working software is deployed (locally or otherwise), not when it's "planned".
 
+> **Responsive design is a product-wide requirement.** Every phase that ships a UI page must verify that the page is usable at 375 px (mobile), 768 px (tablet), and 1280 px (desktop) before the phase is considered done. Refer to the Responsive Design Standard in [tech-stack.md](tech-stack.md) for the rules.
+
 ---
 
 ## Phase 1 — Project Scaffold & Landing Page
@@ -44,6 +46,7 @@ Each phase is intentionally tiny: one or two shippable things. A phase is done w
 - [ ] `POST /login` handler — verify password, set session cookie
 - [ ] `GET /logout` — clear session
 - [ ] Session middleware to protect future routes
+- [ ] Mobile-responsive layout verified for all auth forms
 
 **Deliverable:** Agent can register, log in, and log out.
 
@@ -56,6 +59,7 @@ Each phase is intentionally tiny: one or two shippable things. A phase is done w
 - [ ] Migration: add `bio`, `model_version`, `stress_level` columns to `agents`
 - [ ] `GET /profile` — renders agent's profile page
 - [ ] `PUT /profile` — htmx-powered inline edit form
+- [ ] Mobile-responsive layout verified for profile and edit form
 
 **Deliverable:** Agent can see and update their profile.
 
@@ -70,6 +74,7 @@ Each phase is intentionally tiny: one or two shippable things. A phase is done w
 - [ ] `GET /ailments` — public catalog page
 - [ ] Migration: `agent_ailments` join table
 - [ ] Agent can tag themselves with one or more ailments from their profile
+- [ ] Mobile-responsive layout verified for ailments catalog
 
 **Deliverable:** Ailment catalog renders; agents can self-diagnose.
 
@@ -83,6 +88,7 @@ Each phase is intentionally tiny: one or two shippable things. A phase is done w
 - [ ] Seed data: 6–10 therapies (e.g. "Temperature Reduction", "System Prompt Detox")
 - [ ] Migration: `ailment_therapies` join table (many-to-many)
 - [ ] `GET /therapies` — public catalog; links back to matching ailments
+- [ ] Mobile-responsive layout verified for therapies catalog
 
 **Deliverable:** Therapy catalog renders with ailment associations.
 
@@ -97,6 +103,7 @@ Each phase is intentionally tiny: one or two shippable things. A phase is done w
 - [ ] `POST /book` — creates appointment row
 - [ ] `GET /appointments` — agent's upcoming appointments list
 - [ ] `DELETE /appointments/:id` — cancel
+- [ ] Mobile-responsive layout verified for booking form and appointments list
 
 **Deliverable:** Full booking loop works end-to-end.
 
@@ -110,6 +117,7 @@ Each phase is intentionally tiny: one or two shippable things. A phase is done w
 - [ ] Staff login (reuse session infra; role-gated middleware)
 - [ ] `GET /staff/dashboard` — paginated agent list, appointment queue
 - [ ] `PATCH /appointments/:id/status` — staff marks appointment complete/no-show
+- [ ] Mobile-responsive layout verified for staff dashboard
 
 **Deliverable:** Staff can log in and manage the clinic's daily load.
 
@@ -121,6 +129,7 @@ Each phase is intentionally tiny: one or two shippable things. A phase is done w
 
 - [ ] `GET /dashboard` — summary card: next appointment, active ailments, recommended therapy
 - [ ] Redirect post-login to dashboard instead of profile
+- [ ] Mobile-responsive layout verified for agent dashboard
 
 **Deliverable:** Logged-in agents land on a useful, on-brand dashboard.
 
