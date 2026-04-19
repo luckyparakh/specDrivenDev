@@ -18,9 +18,9 @@ Think: a real clinic, but the patients are AIs and the ailments are things like 
 
 | Persona | Role | What They Need |
 |---|---|---|
-| **Mary** (Engineering) | Builds and maintains the system | A reliable, ergonomic stack with a clean dashboard for agents and staff |
-| **Susan** (Product) | Owns the feature set | Agent profiles, ailment catalog, therapies, and booking flows |
-| **Steve** (Marketing) | Drives adoption and brand | An attractive, responsive site that looks great on desktop and mobile |
+| **Engineering** | Builds and maintains the system | A reliable, ergonomic stack with a clean dashboard for agents and staff |
+| **Product** | Owns the feature set | Agent profiles, ailment catalog, therapies, and booking flows |
+| **Marketing** | Drives adoption and brand | An attractive, responsive site that looks great on desktop and mobile |
 | **Course students** | Learning spec-driven development with AI coding agents | A real, walkable codebase that demonstrates how specs translate into working software step by step |
 | **Conference demo developers** | Giving AI coding demos at booths | A visually impressive, self-contained app that can be scaffolded live and explained quickly |
 
